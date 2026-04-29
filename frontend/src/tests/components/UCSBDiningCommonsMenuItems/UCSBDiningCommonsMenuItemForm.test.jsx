@@ -14,7 +14,6 @@ vi.mock("react-router", async () => {
 });
 
 describe("UCSBDiningCommonsMenuItemForm tests", () => {
- 
   const expectedHeaders = ["Dining Commons Code", "Name", "Station"];
   const testId = "UCSBDiningCommonsMenuItemForm";
 
@@ -24,8 +23,10 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
         <UCSBDiningCommonsMenuItemForm />
       </Router>,
     );
-    
+
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
+
+    expect(screen.getByTestId(`${testId}-submit`)).toBeInTheDocument();
 
     expectedHeaders.forEach((headerText) => {
       const header = screen.getByText(headerText);
@@ -36,7 +37,11 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
   test("renders correctly when passing in a UCSBDiningCommonsMenuItem", async () => {
     render(
       <Router>
-        <UCSBDiningCommonsMenuItemForm initialContents={ucsbDiningCommonsMenuItemsFixtures.oneDiningCommonsMenuItem} />
+        <UCSBDiningCommonsMenuItemForm
+          initialContents={
+            ucsbDiningCommonsMenuItemsFixtures.oneDiningCommonsMenuItem
+          }
+        />
       </Router>,
     );
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
@@ -52,9 +57,9 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
 
   test("that the correct validations are performed", async () => {
     render(
-        <Router>
-          <UCSBDiningCommonsMenuItemForm />
-        </Router>,
+      <Router>
+        <UCSBDiningCommonsMenuItemForm />
+      </Router>,
     );
 
     expect(await screen.findByText(/Create/)).toBeInTheDocument();
@@ -62,18 +67,22 @@ describe("UCSBDiningCommonsMenuItemForm tests", () => {
     fireEvent.click(submitButton);
 
     await screen.findByText(/Name is required/);
-    expect(screen.getByText(/Dining Commons Code is required/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/Dining Commons Code is required/),
+    ).toBeInTheDocument();
     expect(screen.getByText(/Station is required/)).toBeInTheDocument();
 
-
-    
     const nameInput = screen.getByTestId(`${testId}-name`);
-    const diningCommonsCodeInput = screen.getByTestId(`${testId}-diningCommonsCode`);
+    const diningCommonsCodeInput = screen.getByTestId(
+      `${testId}-diningCommonsCode`,
+    );
     const stationInput = screen.getByTestId(`${testId}-station`);
 
     fireEvent.change(nameInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
-    fireEvent.change(diningCommonsCodeInput, { target: { value: "a".repeat(31) } });
+    fireEvent.change(diningCommonsCodeInput, {
+      target: { value: "a".repeat(31) },
+    });
     fireEvent.click(submitButton);
     fireEvent.change(stationInput, { target: { value: "a".repeat(31) } });
     fireEvent.click(submitButton);
