@@ -16,13 +16,13 @@ const ucsbDiningCommonsMenuItemsFixtures = {
       id: 2,
       diningCommonsCode: "ortega",
       name: "Tofu Banh Mi Sandwich (v)",
-      station: "Entree Specials"
+      station: "Entree Specials",
     },
     {
       id: 3,
       diningCommonsCode: "portola",
       name: "Cream of Broccoli Soup (v)",
-      station: "Greens & Grains"
+      station: "Greens & Grains",
     },
   ],
 };
