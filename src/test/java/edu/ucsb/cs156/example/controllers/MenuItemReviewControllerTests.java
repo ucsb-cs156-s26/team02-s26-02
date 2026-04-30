@@ -91,22 +91,6 @@ public class MenuItemReviewControllerTests extends ControllerTestCase {
             .comments("bruh")
             .build();
 
-    // UCSBDate ucsbDate1 =
-    //     UCSBDate.builder()
-    //         .name("firstDayOfClasses")
-    //         .quarterYYYYQ("20222")
-    //         .localDateTime(ldt1)
-    //         .build();
-
-    // LocalDateTime ldt2 = LocalDateTime.parse("2022-03-11T00:00:00");
-
-    // UCSBDate ucsbDate2 =
-    //     UCSBDate.builder()
-    //         .name("lastDayOfClasses")
-    //         .quarterYYYYQ("20222")
-    //         .localDateTime(ldt2)
-    //         .build();
-
     ArrayList<MenuItemReview> expectedMenuItemReviews = new ArrayList<>();
     expectedMenuItemReviews.add(menuItemReview1);
     // stopped here 41:57
