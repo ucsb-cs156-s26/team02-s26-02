@@ -30,7 +30,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemsTable
-            diningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            diningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -72,7 +74,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemsTable
-            diningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            diningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -116,7 +120,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemsTable
-            diningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            diningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
@@ -137,7 +143,9 @@ describe("UserTable tests", () => {
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/ucsbdiningcommonsmenuitems/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/ucsbdiningcommonsmenuitems/edit/1",
+      ),
     );
   });
 
@@ -155,7 +163,9 @@ describe("UserTable tests", () => {
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
           <UCSBDiningCommonsMenuItemsTable
-            diningCommonsMenuItems={ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems}
+            diningCommonsMenuItems={
+              ucsbDiningCommonsMenuItemsFixtures.threeDiningCommonsMenuItems
+            }
             currentUser={currentUser}
           />
         </MemoryRouter>
