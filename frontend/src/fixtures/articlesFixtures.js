@@ -5,7 +5,7 @@ const articlesFixtures = {
     url: "http://example.com/article1",
     explanation: "This is the first article.",
     email: "author1@example.com",
-    dateAdded: "2026-4-30T12:00:00"
+    dateAdded: "2026-4-30T12:00:00",
   },
   threeArticles: [
     {
@@ -23,7 +23,6 @@ const articlesFixtures = {
       explanation: "This article discusses [topic].",
       email: "author2@example.com",
       dateAdded: "2026-4-30T12:00:00",
-      localDateTime: "2026-04-03T12:00:00",
     },
     {
       id: 3,
