@@ -82,8 +82,6 @@ function App() {
             exact
             path="/helprequests"
             element={<HelpRequestIndexPage />}
-            path="/diningcommonsmenuitems"
-            element={<UCSBDiningCommonsMenuItemsIndexPage />}
           />
         </>
       )}
@@ -98,6 +96,22 @@ function App() {
             exact
             path="/helprequests/create"
             element={<HelpRequestCreatePage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_USER") && (
+        <>
+          <Route
+            exact
+            path="/diningcommonsmenuitems"
+            element={<UCSBDiningCommonsMenuItemsIndexPage />}
+          />
+        </>
+      )}
+      {hasRole(currentUser, "ROLE_ADMIN") && (
+        <>
+          <Route
+            exact
             path="/diningcommonsmenuitems/edit/:id"
             element={<UCSBDiningCommonsMenuItemsEditPage />}
           />
