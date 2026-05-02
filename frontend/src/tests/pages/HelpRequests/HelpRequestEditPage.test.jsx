@@ -68,7 +68,9 @@ describe("HelpRequestEditPage tests", () => {
         </QueryClientProvider>,
       );
       await screen.findByText("Edit Help Request");
-      expect(screen.queryByTestId("HelpRequest-requesterEmail")).not.toBeInTheDocument();
+      expect(
+        screen.queryByTestId("HelpRequest-requesterEmail"),
+      ).not.toBeInTheDocument();
       restoreConsole();
     });
   });
@@ -125,9 +127,13 @@ describe("HelpRequestEditPage tests", () => {
       await screen.findByTestId("HelpRequestForm-id");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByLabelText("Team ID");
-      const tableOrBreakoutRoomField = screen.getByLabelText("Table or Breakout Room");
+      const tableOrBreakoutRoomField = screen.getByLabelText(
+        "Table or Breakout Room",
+      );
       const requestTimeField = screen.getByLabelText("Request Time in UTC");
       const explanationField = screen.getByLabelText("Explanation");
       const solvedField = screen.getByLabelText("Solved");
@@ -191,21 +197,25 @@ describe("HelpRequestEditPage tests", () => {
       ); // posted object
     });
 
-     test("Changes when you click Update", async () => {
-       render(
-         <QueryClientProvider client={queryClient}>
-           <MemoryRouter>
-             <HelpRequestEditPage />
-           </MemoryRouter>
-         </QueryClientProvider>,
-       );
+    test("Changes when you click Update", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <HelpRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
 
       await screen.findByTestId("HelpRequestForm-id");
 
       const idField = screen.getByTestId("HelpRequestForm-id");
-      const requesterEmailField = screen.getByTestId("HelpRequestForm-requesterEmail");
+      const requesterEmailField = screen.getByTestId(
+        "HelpRequestForm-requesterEmail",
+      );
       const teamIdField = screen.getByLabelText("Team ID");
-      const tableOrBreakoutRoomField = screen.getByLabelText("Table or Breakout Room");
+      const tableOrBreakoutRoomField = screen.getByLabelText(
+        "Table or Breakout Room",
+      );
       const requestTimeField = screen.getByLabelText("Request Time in UTC");
       const explanationField = screen.getByLabelText("Explanation");
       const solvedField = screen.getByLabelText("Solved");
@@ -228,33 +238,32 @@ describe("HelpRequestEditPage tests", () => {
 
       expect(submitButton).toHaveTextContent("Update");
 
+      fireEvent.change(requesterEmailField, {
+        target: { value: "davidchen123@ucsb.edu" },
+      });
+      fireEvent.change(teamIdField, {
+        target: { value: "03" },
+      });
+      fireEvent.change(tableOrBreakoutRoomField, {
+        target: { value: "Table 3" },
+      });
+      fireEvent.change(requestTimeField, {
+        target: { value: "2030-04-28T12:30" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "I need a lot of help with the project" },
+      });
+      fireEvent.change(solvedField, {
+        target: { value: "false" },
+      });
 
-       fireEvent.change(requesterEmailField, {
-         target: { value: "davidchen123@ucsb.edu" },
-       });
-       fireEvent.change(teamIdField, {
-         target: { value: "03" },
-       });
-       fireEvent.change(tableOrBreakoutRoomField, {
-         target: { value: "Table 3" },
-       });
-       fireEvent.change(requestTimeField, {
-         target: { value: "2030-04-28T12:30" },
-       });
-       fireEvent.change(explanationField, {
-         target: { value: "I need a lot of help with the project" },
-       });
-       fireEvent.change(solvedField, {
-         target: { value: "false" },
-       });
+      fireEvent.click(submitButton);
 
-       fireEvent.click(submitButton);
-
-       await waitFor(() => expect(mockToast).toBeCalled());
-       expect(mockToast).toBeCalledWith(
-         "Help Request Updated - id: 17 explanation: I need a lot of help with the project",
-       );
-       expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
-     });
-   });
+      await waitFor(() => expect(mockToast).toBeCalled());
+      expect(mockToast).toBeCalledWith(
+        "Help Request Updated - id: 17 explanation: I need a lot of help with the project",
+      );
+      expect(mockNavigate).toBeCalledWith({ to: "/helprequests" });
+    });
+  });
 });
