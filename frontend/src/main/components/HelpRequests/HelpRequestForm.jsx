@@ -56,17 +56,17 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="teamID">Team ID</Form.Label>
+        <Form.Label htmlFor="teamId">Team ID</Form.Label>
         <Form.Control
-          id="teamID"
+          id="teamId"
           type="text"
-          isInvalid={Boolean(errors.teamID)}
-          {...register("teamID", {
+          isInvalid={Boolean(errors.teamId)}
+          {...register("teamId", {
             required: "Team ID is required.",
           })}
         />
         <Form.Control.Feedback type="invalid">
-          {errors.teamID?.message}
+          {errors.teamId?.message}
         </Form.Control.Feedback>
       </Form.Group>
 

@@ -10,7 +10,7 @@ export default function HelpRequestCreatePage({ storybook = false }) {
     method: "POST",
     params: {
       requesterEmail: helpRequest.requesterEmail,
-      teamId: helpRequest.teamID,
+      teamId: helpRequest.teamId,
       tableOrBreakoutRoom: helpRequest.tableOrBreakoutRoom,
       requestTime: helpRequest.requestTime,
       explanation: helpRequest.explanation,
