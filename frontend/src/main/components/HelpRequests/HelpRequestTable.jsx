@@ -47,7 +47,7 @@ export default function HelpRequestTable({
 
     {
       header: "Team ID",
-      accessorKey: "teamID",
+      accessorKey: "teamId",
     },
 
     {

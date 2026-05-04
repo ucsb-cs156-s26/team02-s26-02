@@ -31,7 +31,7 @@ describe("HelpRequestTable tests", () => {
   const expectedFields = [
     "id",
     "requesterEmail",
-    "teamID",
+    "teamId",
     "tableOrBreakoutRoom",
     "requestTime",
     "explanation",
