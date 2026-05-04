@@ -4,7 +4,7 @@ import { _Navigate } from "react-router";
 import { _useBackendMutation } from "main/utils/useBackend";
 import { _toast } from "react-toastify";
 
-export default function UCSBOrganizationCreatePage({ _storybook = false }) {
+export default function UCSBOrganizationCreatePage() {
   return (
     <BasicLayout>
       <div className="pt-2">
