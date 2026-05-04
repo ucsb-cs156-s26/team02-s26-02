@@ -17,7 +17,7 @@ export default function UCSBDiningCommonsMenuItemsTable({
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/ucsbdiningcommonsmenuitems/edit/${cell.row.original.id}`);
+    navigate(`/diningcommonsmenuitems/edit/${cell.row.original.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
