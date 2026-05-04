@@ -1,9 +1,9 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, _fireEvent } from "@testing-library/react";
 import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
-import mockConsole from "tests/testutils/mockConsole";
-import { restaurantFixtures } from "fixtures/restaurantFixtures";
+import _mockConsole from "tests/testutils/mockConsole";
+import { _restaurantFixtures } from "fixtures/restaurantFixtures";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
