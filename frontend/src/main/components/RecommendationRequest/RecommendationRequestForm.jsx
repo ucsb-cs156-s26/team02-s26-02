@@ -23,6 +23,8 @@ function RecommendationRequestFor({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
+  const email_regex = 
+    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/$;
   // Stryker restore Regex
 
   // TODO: Add regex for email validation
@@ -56,6 +58,7 @@ function RecommendationRequestFor({
               isInvalid={Boolean(errors.requesterEmail)}
               {...register("requesterEmail", {
                 required: "requesterEmail is required.",
+                pattern: email_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
@@ -75,6 +78,7 @@ function RecommendationRequestFor({
               isInvalid={Boolean(errors.professorEmail)}
               {...register("professorEmail", {
                 required: "professorEmail is required.",
+                pattern: email_regex,
               })}
             />
             <Form.Control.Feedback type="invalid">
