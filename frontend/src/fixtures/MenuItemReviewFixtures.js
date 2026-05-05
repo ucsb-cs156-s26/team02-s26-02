@@ -4,7 +4,7 @@ const MenuItemReviewFixtures = {
     itemId: 17,
     reviewerEmail: "kaijunli@ucsb.edu",
     stars: 5,
-    dateReviewed: "2022-01-02T12:00:00Z",
+    dateReviewed: "2022-01-02T12:00:00",
     comments: "skibidi",
   },
   threeMenuItemReviews: [
@@ -13,7 +13,7 @@ const MenuItemReviewFixtures = {
       itemId: 17,
       reviewerEmail: "kaijunli@ucsb.edu",
       stars: 5,
-      dateReviewed: "2022-01-02T12:00:00Z",
+      dateReviewed: "2022-01-02T12:00:00",
       comments: "skibidi",
     },
     {
@@ -21,7 +21,7 @@ const MenuItemReviewFixtures = {
       itemId: 69,
       reviewerEmail: "testing@ucsb.edu",
       stars: 4,
-      dateReviewed: "2023-01-02T12:00:00Z",
+      dateReviewed: "2023-01-02T12:00:00",
       comments: "skibidigyatt",
     },
     {
@@ -29,7 +29,7 @@ const MenuItemReviewFixtures = {
       itemId: 67,
       reviewerEmail: "secondtest@ucsb.edu",
       stars: 2,
-      dateReviewed: "2024-01-02T12:00:00Z",
+      dateReviewed: "2024-01-02T12:00:00",
       comments: "bruh",
     },
   ],
