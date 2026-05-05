@@ -83,16 +83,16 @@ function RecommendationRequestFor({
           </Form.Group>
         </Col>
       </Row>
-        {/* <Col>
+        <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="DateRequested">Date Requested(iso format)</Form.Label>
+            <Form.Label htmlFor="DateRequested">Date Requested (iso format)</Form.Label>
             <Form.Control
               data-testid="RecommendationRequestForm-DateRequested"
               id="dateRequested"
               type="datetime-local"
-              isInvalid={Boolean(errors.localDateTime)}
-              {...register("localDateTime", {
-                required: true,
+              isInvalid={Boolean(errors.dateRequested)}
+              {...register("dateRequested", {
+                required: true, // Could be false, if we just take the current datetime
                 pattern: isodate_regex,
               })}
             />
@@ -100,7 +100,7 @@ function RecommendationRequestFor({
               {errors.localDateTime && "DateRequested is required. "}
             </Form.Control.Feedback>
           </Form.Group>
-        </Col> */}
+        </Col>
         <Col>
           <Form.Group className="mb-3">
             <Form.Label htmlFor="DateNeeded">Date Needed (iso format)</Form.Label>
