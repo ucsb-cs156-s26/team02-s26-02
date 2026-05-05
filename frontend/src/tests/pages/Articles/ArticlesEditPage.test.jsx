@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
+import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 
@@ -7,9 +7,8 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
 
-describe("PlaceholderEditPage tests", () => {
+describe("ArticlesEditPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const setupUserOnly = () => {
@@ -25,20 +24,16 @@ describe("PlaceholderEditPage tests", () => {
 
   const queryClient = new QueryClient();
   test("Renders expected content", async () => {
-    // arrange
-
     setupUserOnly();
 
-    // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <PlaceholderEditPage />
+          <ArticlesEditPage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    // assert
     await screen.findByText("Edit page not yet implemented");
     expect(
       screen.getByText("Edit page not yet implemented"),

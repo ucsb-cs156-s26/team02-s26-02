@@ -2,7 +2,7 @@ const helpRequestFixtures = {
   oneRequest: {
     id: 1,
     requesterEmail: "dchen451@ucsb.edu",
-    teamID: "01",
+    teamId: "01",
     tableOrBreakoutRoom: "Table 1",
     requestTime: "2022-01-02T12:00:00",
     explanation: "I don't understand how to do the homework",
@@ -13,7 +13,7 @@ const helpRequestFixtures = {
     {
       id: 1,
       requesterEmail: "dchen451@ucsb.edu",
-      teamID: "01",
+      teamId: "01",
       tableOrBreakoutRoom: "Table 1",
       requestTime: "2022-01-02T12:00:00",
       explanation: "I don't understand how to do the homework",
@@ -22,7 +22,7 @@ const helpRequestFixtures = {
     {
       id: 2,
       requesterEmail: "davidchen@ucsb.edu",
-      teamID: "02",
+      teamId: "02",
       tableOrBreakoutRoom: "Table 2",
       requestTime: "2026-04-28T12:30:30",
       explanation: "I need help with the project",
@@ -31,7 +31,7 @@ const helpRequestFixtures = {
     {
       id: 3,
       requesterEmail: "johndoe@ucsb.edu",
-      teamID: "10",
+      teamId: "10",
       tableOrBreakoutRoom: "Table 10",
       requestTime: "2024-11-28T12:56:30",
       explanation: "I need help with the midterm",
