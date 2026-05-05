@@ -1,10 +1,10 @@
 import React from "react";
-import { _useBackend } from "main/utils/useBackend";
+import { useBackend } from "main/utils/useBackend";
 
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import _RestaurantTable from "main/components/Restaurants/RestaurantTable";
-import { _useCurrentUser, _hasRole } from "main/utils/useCurrentUser";
-import { _Button } from "react-bootstrap";
+import RestaurantTable from "main/components/Restaurants/RestaurantTable";
+import { useCurrentUser, hasRole } from "main/utils/useCurrentUser";
+import { Button } from "react-bootstrap";
 
 export default function UCSBOrganizationIndexPage() {
   return (
