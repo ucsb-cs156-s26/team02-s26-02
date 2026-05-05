@@ -4,7 +4,7 @@ const MenuItemReviewFixtures = {
     itemId: 17,
     reviewerEmail: "kaijunli@ucsb.edu",
     stars: 5,
-    dateReviewed: "2022-01-02T12:00:00",
+    dateReviewed: "2022-01-02T12:00:00Z",
     comments: "skibidi",
   },
   threeMenuItemReviews: [
