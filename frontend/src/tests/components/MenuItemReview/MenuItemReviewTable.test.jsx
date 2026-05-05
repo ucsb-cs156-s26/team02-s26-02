@@ -204,7 +204,7 @@ describe("MenuItemReviewTable tests", () => {
 
     const axiosMock = new AxiosMockAdapter(axios);
     axiosMock
-      .onDelete("/api/MenuItemReview")
+      .onDelete("/api/menuitemreview")
       .reply(200, { message: "MenuItemReview deleted" });
 
     // act - render the component

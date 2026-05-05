@@ -65,14 +65,25 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/restaurants">
                     Restaurants
                   </Nav.Link>
+                  <Nav.Link as={Link} to="/diningcommonsmenuitems">
+                    UCSBDiningCommonsMenuItems
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/ucsbdates">
                     UCSB Dates
+                  </Nav.Link>
+                  <Nav.Link as={Link} to="/helprequests">
+                    Help Requests
                   </Nav.Link>
                   <Nav.Link as={Link} to="/placeholder">
                     Placeholder
                   </Nav.Link>
+<<<<<<< Kai-MenuItemReview-Copy-Placeholders
                   <Nav.Link as={Link} to="/MenuItemReview">
                     MenuItemReview
+=======
+                  <Nav.Link as={Link} to="/ucsborganization">
+                    UCSBOrganization
+>>>>>>> main
                   </Nav.Link>
                 </>
               ) : (
