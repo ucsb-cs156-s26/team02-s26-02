@@ -8,7 +8,7 @@ export default {
 };
 
 const Template = (args) => {
-  return <MenuItemReviewForm {...args}/>;
+  return <MenuItemReviewForm {...args} />;
 };
 
 export const Create = Template.bind({});

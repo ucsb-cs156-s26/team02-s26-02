@@ -18,7 +18,13 @@ vi.mock("react-router", async () => {
 describe("MenuItemReviewForm tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["itemId", "reviewerEmail","stars", "Date (iso format)", "comments"];
+  const expectedHeaders = [
+    "itemId",
+    "reviewerEmail",
+    "stars",
+    "Date (iso format)",
+    "comments",
+  ];
   const testId = "MenuItemReviewForm";
 
   test("renders correctly with no initialContents", async () => {
@@ -42,7 +48,9 @@ describe("MenuItemReviewForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <MenuItemReviewForm initialContents={MenuItemReviewFixtures.oneMenuItemReview} />
+          <MenuItemReviewForm
+            initialContents={MenuItemReviewFixtures.oneMenuItemReview}
+          />
         </Router>
       </QueryClientProvider>,
     );
@@ -92,7 +100,5 @@ describe("MenuItemReviewForm tests", () => {
     expect(screen.getByText(/stars is required/)).toBeInTheDocument();
     expect(screen.getByText(/dateReviewed is required/)).toBeInTheDocument();
     expect(screen.getByText(/comments is required/)).toBeInTheDocument();
-
-    
   });
 });

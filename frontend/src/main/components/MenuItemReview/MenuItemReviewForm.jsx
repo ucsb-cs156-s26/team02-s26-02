@@ -7,21 +7,19 @@ function MenuItemReviewForm({
   submitAction,
   buttonLabel = "Create",
 }) {
-
-
   // Stryker disable all
   const {
-  register,
-  formState: { errors },
-  handleSubmit,
-} = useForm({ 
-  defaultValues: initialContents 
-    ? { 
-        ...initialContents, 
-        dateReviewed: initialContents.dateReviewed.replace("Z", "") 
-      } 
-    : {}
-});
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues: initialContents
+      ? {
+          ...initialContents,
+          dateReviewed: initialContents.dateReviewed.replace("Z", ""),
+        }
+      : {},
+  });
   const navigate = useNavigate();
 
   // For explanation, see: https://stackoverflow.com/questions/3143070/javascript-regex-iso-datetime
