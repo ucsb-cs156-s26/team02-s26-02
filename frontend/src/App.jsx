@@ -11,10 +11,6 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
-import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
-import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
-
 import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
 import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
 import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
@@ -149,27 +145,6 @@ function App() {
           />
         </>
       )}
-
-      {hasRole(currentUser, "ROLE_USER") && (
-        <>
-          <Route exact path="/articles" element={<ArticlesIndexPage />} />
-        </>
-      )}
-      {hasRole(currentUser, "ROLE_ADMIN") && (
-        <>
-          <Route
-            exact
-            path="/articles/edit/:id"
-            element={<ArticlesEditPage />}
-          />
-          <Route
-            exact
-            path="/articles/create"
-            element={<ArticlesCreatePage />}
-          />
-        </>
-      )}
-
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route
