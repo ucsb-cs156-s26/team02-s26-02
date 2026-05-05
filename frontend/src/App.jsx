@@ -11,15 +11,13 @@ import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 
-<<<<<<< Kai-MenuItemReview-Copy-Placeholders
 import MenuItemReviewIndexPage from "main/pages/MenuItemReview/MenuItemReviewIndexPage";
 import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import MenuItemReviewEditPage from "main/pages/MenuItemReview/MenuItemReviewEditPage";
-=======
+
 import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
 import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
 import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
->>>>>>> main
 
 import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
@@ -69,7 +67,11 @@ function App() {
       )}
       {hasRole(currentUser, "ROLE_USER") && (
         <>
-          <Route exact path="/MenuItemReview" element={<MenuItemReviewIndexPage />} />
+          <Route
+            exact
+            path="/MenuItemReview"
+            element={<MenuItemReviewIndexPage />}
+          />
         </>
       )}
       {hasRole(currentUser, "ROLE_ADMIN") && (

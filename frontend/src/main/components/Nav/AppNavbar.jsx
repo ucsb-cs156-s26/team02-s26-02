@@ -77,13 +77,11 @@ export default function AppNavbar({
                   <Nav.Link as={Link} to="/placeholder">
                     Placeholder
                   </Nav.Link>
-<<<<<<< Kai-MenuItemReview-Copy-Placeholders
                   <Nav.Link as={Link} to="/MenuItemReview">
                     MenuItemReview
-=======
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/ucsborganization">
                     UCSBOrganization
->>>>>>> main
                   </Nav.Link>
                 </>
               ) : (
