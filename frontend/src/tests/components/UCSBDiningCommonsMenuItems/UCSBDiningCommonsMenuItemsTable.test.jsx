@@ -144,7 +144,7 @@ describe("UserTable tests", () => {
 
     await waitFor(() =>
       expect(mockedNavigate).toHaveBeenCalledWith(
-        "/ucsbdiningcommonsmenuitems/edit/1",
+        "/diningcommonsmenuitems/edit/1",
       ),
     );
   });
