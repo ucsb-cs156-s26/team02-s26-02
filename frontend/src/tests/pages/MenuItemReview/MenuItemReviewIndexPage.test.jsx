@@ -94,15 +94,15 @@ describe("MenuItemReviewIndexPage tests", () => {
       "3",
     );
 
-    const createMenuItemReviewButton = screen.queryByText("Create MenuItemReview");
+    const createMenuItemReviewButton = screen.queryByText(
+      "Create MenuItemReview",
+    );
     expect(createMenuItemReviewButton).not.toBeInTheDocument();
 
     const itemId = screen.getByText("1");
     expect(itemId).toBeInTheDocument();
 
-    const reviewerEmail = screen.getByText(
-      "kaijunli@ucsb.edu",
-    );
+    const reviewerEmail = screen.getByText("kaijunli@ucsb.edu");
     expect(reviewerEmail).toBeInTheDocument();
 
     const stars = screen.getByText("5");
@@ -114,7 +114,7 @@ describe("MenuItemReviewIndexPage tests", () => {
     const comments = screen.getByText("skibidi");
     expect(comments).toBeInTheDocument();
     // for non-admin users, details button is visible, but the edit and delete buttons should not be visible
-    
+
     expect(
       screen.queryByTestId("MenuItemReviewTable-cell-row-0-col-Delete-button"),
     ).not.toBeInTheDocument();
@@ -193,6 +193,6 @@ describe("MenuItemReviewIndexPage tests", () => {
     });
     expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreview");
     expect(axiosMock.history.delete[0].url).toBe("/api/menuitemreview");
-    expect(axiosMock.history.delete[0].params).toEqual({ id: 1});
+    expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
   });
 });
