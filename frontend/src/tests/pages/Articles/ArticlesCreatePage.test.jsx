@@ -8,6 +8,7 @@ import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { vi } from "vitest";
 
 const mockToast = vi.fn();
 vi.mock("react-toastify", async (importOriginal) => {
@@ -73,6 +74,8 @@ describe("ArticlesCreatePage tests", () => {
 
     axiosMock.onPost("/api/articles/post").reply(202, article);
 
+    const consoleLogSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -123,9 +126,28 @@ describe("ArticlesCreatePage tests", () => {
       localDateTime: "2024-01-01T00:00:00",
     });
 
+    // Verify console.log calls with correct messages and data
+    expect(consoleLogSpy).toHaveBeenCalledWith("submitting data:", {
+      title: "Test Article",
+      url: "https://example.com",
+      explanation: "This is a test article",
+      email: "test@example.com",
+      dateAdded: "2024-01-01T00:00",
+    });
+
+    expect(consoleLogSpy).toHaveBeenCalledWith("params being sent:", {
+      title: "Test Article",
+      url: "https://example.com",
+      explanation: "This is a test article",
+      email: "test@example.com",
+      localDateTime: "2024-01-01T00:00:00",
+    });
+
     expect(mockToast).toBeCalledWith(
       "New article Created - id: 3 name: Test Article",
     );
     expect(mockNavigate).toBeCalledWith({ to: "/articles" });
+
+    consoleLogSpy.mockRestore();
   });
 });
