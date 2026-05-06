@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
+import MenuItemReviewCreatePage from "main/pages/MenuItemReview/MenuItemReviewCreatePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 
@@ -7,8 +7,9 @@ import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { expect } from "vitest";
 
-describe("ArticlesCreatePage tests", () => {
+describe("MenuItemReviewCreatePage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
 
   const setupUserOnly = () => {
@@ -24,15 +25,20 @@ describe("ArticlesCreatePage tests", () => {
 
   const queryClient = new QueryClient();
   test("Renders expected content", async () => {
+    // arrange
+
     setupUserOnly();
 
+    // act
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticlesCreatePage />
+          <MenuItemReviewCreatePage />
         </MemoryRouter>
       </QueryClientProvider>,
     );
+
+    // assert
 
     await screen.findByText("Create page not yet implemented");
     expect(
