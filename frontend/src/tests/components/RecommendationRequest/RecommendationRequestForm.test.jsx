@@ -32,7 +32,11 @@ describe("RecommendationRequestForm tests", () => {
   test("renders correctly when passing in a RecommendationRequest", async () => {
     render(
       <Router>
-        <RecommendationRequestForm initialContents={recommendationRequestFixtures.oneRecommendationRequest} />
+        <RecommendationRequestForm
+          initialContents={
+            recommendationRequestFixtures.oneRecommendationRequest
+          }
+        />
       </Router>,
     );
     await screen.findByTestId(/RecommendationRequestForm-id/);
@@ -47,11 +51,21 @@ describe("RecommendationRequestForm tests", () => {
       </Router>,
     );
     await screen.findByTestId("RecommendationRequestForm-requesterEmail");
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
     fireEvent.change(requesterEmailField, { target: { value: "bad-input" } });
@@ -108,16 +122,32 @@ describe("RecommendationRequestForm tests", () => {
     await screen.findByTestId("RecommendationRequestForm-dateNeeded");
     await screen.findByTestId("RecommendationRequestForm-explanation");
 
-    const requesterEmailField = screen.getByTestId("RecommendationRequestForm-requesterEmail");
-    const professorEmailField = screen.getByTestId("RecommendationRequestForm-professorEmail");
-    const dateRequestedField = screen.getByTestId("RecommendationRequestForm-dateRequested");
-    const dateNeededField = screen.getByTestId("RecommendationRequestForm-dateNeeded");
-    const explanationField = screen.getByTestId("RecommendationRequestForm-explanation");
+    const requesterEmailField = screen.getByTestId(
+      "RecommendationRequestForm-requesterEmail",
+    );
+    const professorEmailField = screen.getByTestId(
+      "RecommendationRequestForm-professorEmail",
+    );
+    const dateRequestedField = screen.getByTestId(
+      "RecommendationRequestForm-dateRequested",
+    );
+    const dateNeededField = screen.getByTestId(
+      "RecommendationRequestForm-dateNeeded",
+    );
+    const explanationField = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
-    fireEvent.change(explanationField, { target: { value: "This is now an explanation!" } });
-    fireEvent.change(requesterEmailField, { target: { value: "requesterEmail@email.com" } });
-    fireEvent.change(professorEmailField, { target: { value: "professorEmail@email.com"} });
+    fireEvent.change(explanationField, {
+      target: { value: "This is now an explanation!" },
+    });
+    fireEvent.change(requesterEmailField, {
+      target: { value: "requesterEmail@email.com" },
+    });
+    fireEvent.change(professorEmailField, {
+      target: { value: "professorEmail@email.com" },
+    });
     fireEvent.change(dateRequestedField, {
       target: { value: "2022-01-02T12:00" },
     });
@@ -127,7 +157,6 @@ describe("RecommendationRequestForm tests", () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
-
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {

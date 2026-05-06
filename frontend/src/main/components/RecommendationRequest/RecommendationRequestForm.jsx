@@ -61,7 +61,7 @@ function RecommendationRequestFor({
               <Form.Control.Feedback type="invalid">
                 {errors.requesterEmail?.message}
                 {errors.requesterEmail?.type === "pattern" &&
-                "Requester Email must be an email."}
+                  "Requester Email must be an email."}
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
@@ -83,7 +83,7 @@ function RecommendationRequestFor({
               <Form.Control.Feedback type="invalid">
                 {errors.professorEmail?.message}
                 {errors.professorEmail?.type === "pattern" &&
-                "Professor Email must be an email."}
+                  "Professor Email must be an email."}
               </Form.Control.Feedback>
             </Form.Group>
           </Col>
