@@ -93,8 +93,8 @@ function MenuItemReviewForm({
               isInvalid={Boolean(errors.stars)}
               {...register("stars", {
                 required: "stars is required.",
-                min: {value : 0, message: "Minimum Rating is 0"},
-                max:{value : 5, message: "Maximum Rating is 5"},
+                min: { value: 0, message: "Minimum Rating is 0" },
+                max: { value: 5, message: "Maximum Rating is 5" },
               })}
             />
             <Form.Control.Feedback type="invalid">
