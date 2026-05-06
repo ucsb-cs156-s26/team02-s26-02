@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-/*import { _fireEvent, render, waitFor, screen } from "@testing-library/react";
-=======
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
->>>>>>> ead16cea6e56ca1a98c88eafe7eb3c13d9c00682
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
 import UCSBOrganizationEditPage from "main/pages/UCSBOrganization/UCSBOrganizationEditPage";
