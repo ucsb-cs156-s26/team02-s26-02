@@ -5,7 +5,7 @@ import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/Rec
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { RecommendationRequestFixtures } from "fixtures/RecommendationRequestFixtures";
+import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
 import mockConsole from "tests/testutils/mockConsole";
@@ -63,9 +63,9 @@ describe("RecommendationRequestIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(screen.getByText(/Create UCSBDate/)).toBeInTheDocument();
+      expect(screen.getByText(/Create Recommendation Request/)).toBeInTheDocument();
     });
-    const button = screen.getByText(/Create UCSBDate/);
+    const button = screen.getByText(/Create Recommendation Request/);
     expect(button).toHaveAttribute("href", "/RecommendationRequest/create");
     expect(button).toHaveAttribute("style", "float: right;");
   });
@@ -76,7 +76,7 @@ describe("RecommendationRequestIndexPage tests", () => {
     const queryClient = new QueryClient();
     axiosMock
       .onGet("/api/RecommendationRequest/all")
-      .reply(200, RecommendationRequestFixtures.threeRecommendationRequests);
+      .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
 
     // act
     render(
@@ -101,7 +101,7 @@ describe("RecommendationRequestIndexPage tests", () => {
     );
 
     // assert that the Create button is not present when user isn't an admin
-    expect(screen.queryByText(/Create UCSBDate/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Create RecommendationRequest/)).not.toBeInTheDocument();
   });
 
   test("renders empty table when backend unavailable, user only", async () => {
@@ -142,10 +142,10 @@ describe("RecommendationRequestIndexPage tests", () => {
     const queryClient = new QueryClient();
     axiosMock
       .onGet("/api/RecommendationRequest/all")
-      .reply(200, RecommendationRequestFixtures.threeRecommendationRequests);
+      .reply(200, recommendationRequestFixtures.threeRecommendationRequests);
     axiosMock
       .onDelete("/api/RecommendationRequest")
-      .reply(200, "UCSBDate with id 1 was deleted");
+      .reply(200, "RecommendationRequest with id 1 was deleted");
 
     // act
     render(
@@ -177,7 +177,7 @@ describe("RecommendationRequestIndexPage tests", () => {
 
     // assert
     await waitFor(() => {
-      expect(mockToast).toBeCalledWith("UCSBDate with id 1 was deleted");
+      expect(mockToast).toBeCalledWith("RecommendationRequest with id 1 was deleted");
     });
   });
 });
