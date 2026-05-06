@@ -68,7 +68,7 @@ describe("ArticlesCreatePage tests", () => {
       url: "https://example.com",
       explanation: "This is a test article",
       email: "test@example.com",
-      dateAdded: "2024-01-01T00:00:00",
+      localDateTime: "2024-01-01T00:00:00",
     };
 
     axiosMock.onPost("/api/articles/post").reply(202, article);
@@ -100,8 +100,10 @@ describe("ArticlesCreatePage tests", () => {
     const createButton = screen.getByText("Create");
     expect(createButton).toBeInTheDocument();
 
-    const dateAddedInput = screen.getByLabelText("Date (iso format)");
-    fireEvent.change(dateAddedInput, { target: { value: "2024-01-01T00:00" } });
+    const localDateTimeInput = screen.getByLabelText("Date (iso format)");
+    fireEvent.change(localDateTimeInput, {
+      target: { value: "2024-01-01T00:00" },
+    });
 
     fireEvent.change(titleInput, { target: { value: "Test Article" } });
     fireEvent.change(urlInput, { target: { value: "https://example.com" } });
@@ -118,7 +120,7 @@ describe("ArticlesCreatePage tests", () => {
       url: "https://example.com",
       explanation: "This is a test article",
       email: "test@example.com",
-      dateAdded: "2024-01-01T00:00", 
+      localDateTime: "2024-01-01T00:00:00",
     });
 
     expect(mockToast).toBeCalledWith(

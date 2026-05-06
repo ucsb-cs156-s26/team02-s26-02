@@ -13,14 +13,12 @@ export default function ArticlesCreatePage({ storybook = false }) {
       url: article.url,
       explanation: article.explanation,
       email: article.email,
-      dateAdded: article.dateAdded,
+      localDateTime: article.dateAdded + ":00",
     },
   });
 
   const onSuccess = (article) => {
-    toast(
-      `New article Created - id: ${article.id} name: ${article.title}`,
-    );
+    toast(`New article Created - id: ${article.id} name: ${article.title}`);
   };
 
   const mutation = useBackendMutation(
@@ -33,6 +31,14 @@ export default function ArticlesCreatePage({ storybook = false }) {
   const { isSuccess } = mutation;
 
   const onSubmit = async (data) => {
+    console.log("submitting data:", data);
+    console.log("params being sent:", {
+      title: data.title,
+      url: data.url,
+      explanation: data.explanation,
+      email: data.email,
+      localDateTime: data.dateAdded + ":00",
+    });
     mutation.mutate(data);
   };
 
