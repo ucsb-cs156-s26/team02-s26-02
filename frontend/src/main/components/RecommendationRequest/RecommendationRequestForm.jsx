@@ -23,11 +23,8 @@ function RecommendationRequestFor({
   // Stryker disable Regex
   const isodate_regex =
     /(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d)|(\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d)/i;
-  const email_regex = 
-    /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/$;
+  const email_regex = /^[\w-.]+@[.]+$/;
   // Stryker restore Regex
-
-  // TODO: Add regex for email validation
 
   return (
     <Form onSubmit={handleSubmit(submitAction)}>
@@ -47,51 +44,57 @@ function RecommendationRequestFor({
             </Form.Group>
           </Col>
         )}
-      <Row>
+        <Row>
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
+              <Form.Control
+                data-testid="RecommendationRequestForm-requesterEmail"
+                id="requesterEmail"
+                type="text"
+                isInvalid={Boolean(errors.requesterEmail)}
+                {...register("requesterEmail", {
+                  required: "requesterEmail is required.",
+                  pattern: email_regex,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.requesterEmail?.message}
+                {errors.requesterEmail?.type === "pattern" &&
+                "Requester Email must be an email."}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="professorEmail">Professor Email</Form.Label>
+              <Form.Control
+                data-testid="RecommendationRequestForm-professorEmail"
+                id="professorEmail"
+                type="text"
+                isInvalid={Boolean(errors.professorEmail)}
+                {...register("professorEmail", {
+                  required: "professorEmail is required.",
+                  pattern: email_regex,
+                })}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.professorEmail?.message}
+                {errors.professorEmail?.type === "pattern" &&
+                "Professor Email must be an email."}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        </Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
+            <Form.Label htmlFor="DateRequested">
+              Date Requested (iso format)
+            </Form.Label>
             <Form.Control
-              data-testid="RecommendationRequest-requesterEmail"
-              id="requesterEmail"
-              type="text"
-              isInvalid={Boolean(errors.requesterEmail)}
-              {...register("requesterEmail", {
-                required: "requesterEmail is required.",
-                pattern: email_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.requesterEmail?.message}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="professorEmail">Professor Email</Form.Label>
-            <Form.Control
-              data-testid="RecommendationRequest-professorEmail"
-              id="professorEmail"
-              type="text"
-              isInvalid={Boolean(errors.professorEmail)}
-              {...register("professorEmail", {
-                required: "professorEmail is required.",
-                pattern: email_regex,
-              })}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.professorEmail?.message}
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="DateRequested">Date Requested (iso format)</Form.Label>
-            <Form.Control
-              data-testid="RecommendationRequestForm-DateRequested"
+              data-testid="RecommendationRequestForm-dateRequested"
               id="dateRequested"
               type="datetime-local"
               isInvalid={Boolean(errors.dateRequested)}
@@ -101,15 +104,17 @@ function RecommendationRequestFor({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.localDateTime && "DateRequested is required. "}
+              {errors.dateRequested && "Date Requested is required."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label htmlFor="DateNeeded">Date Needed (iso format)</Form.Label>
+            <Form.Label htmlFor="DateNeeded">
+              Date Needed (iso format)
+            </Form.Label>
             <Form.Control
-              data-testid="RecommendationRequestForm-DateNeeded"
+              data-testid="RecommendationRequestForm-dateNeeded"
               id="dateNeeded"
               type="datetime-local"
               isInvalid={Boolean(errors.dateNeeded)}
@@ -119,7 +124,7 @@ function RecommendationRequestFor({
               })}
             />
             <Form.Control.Feedback type="invalid">
-              {errors.dateNeeded && "DateNeeded is required. "}
+              {errors.dateNeeded && "Date Needed is required."}
             </Form.Control.Feedback>
           </Form.Group>
         </Col>
@@ -130,7 +135,7 @@ function RecommendationRequestFor({
           <Form.Group className="mb-3">
             <Form.Label htmlFor="explanation">Explanation</Form.Label>
             <Form.Control
-              data-testid="RecommendationRequest-explanation"
+              data-testid="RecommendationRequestForm-explanation"
               id="explanation"
               type="text"
               isInvalid={Boolean(errors.explanation)}
@@ -147,7 +152,7 @@ function RecommendationRequestFor({
 
       <Row>
         <Col>
-          <Button type="submit" data-testid="RecommendationRequest-submit">
+          <Button type="submit" data-testid="RecommendationRequestForm-submit">
             {buttonLabel}
           </Button>
           <Button
