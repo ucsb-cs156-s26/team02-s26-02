@@ -31,9 +31,9 @@ import UCSBDiningCommonsMenuItemsIndexPage from "main/pages/UCSBDiningCommonsMen
 import UCSBDiningCommonsMenuItemsCreatePage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsCreatePage";
 import UCSBDiningCommonsMenuItemsEditPage from "main/pages/UCSBDiningCommonsMenuItems/UCSBDiningCommonsMenuItemsEditPage";
 
-import ArticlesIndexPage from "stories/pages/Articles/ArticlesIndexPage";
-import ArticlesEditPage from "stories/pages/Articles/ArticlesEditPage";
-import ArticlesCreatePage from "stories/pages/Articles/ArticlesCreatePage";
+import ArticlesIndexPage from "main/pages/Articles/ArticlesIndexPage";
+import ArticlesEditPage from "main/pages/Articles/ArticlesEditPage";
+import ArticlesCreatePage from "main/pages/Articles/ArticlesCreatePage";
 
 import { hasRole, useCurrentUser } from "main/utils/useCurrentUser";
 
