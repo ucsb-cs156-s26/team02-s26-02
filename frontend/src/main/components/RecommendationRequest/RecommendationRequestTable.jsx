@@ -59,12 +59,28 @@ export default function RecommendationRequestTable({ recReqs, currentUser }) {
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
     columns.push(
-      ButtonColumn("Edit", "primary", editCallback, "RecommendationRequestTable"),
+      ButtonColumn(
+        "Edit",
+        "primary",
+        editCallback,
+        "RecommendationRequestTable",
+      ),
     );
     columns.push(
-      ButtonColumn("Delete", "danger", deleteCallback, "RecommendationRequestTable"),
+      ButtonColumn(
+        "Delete",
+        "danger",
+        deleteCallback,
+        "RecommendationRequestTable",
+      ),
     );
   }
 
-  return <OurTable data={recReqs} columns={columns} testid={"RecommendationRequestTable"} />;
+  return (
+    <OurTable
+      data={recReqs}
+      columns={columns}
+      testid={"RecommendationRequestTable"}
+    />
+  );
 }

@@ -33,8 +33,22 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Date Requested", "Date Needed", "Explanation"];
-    const expectedFields = ["id", "requesterEmail", "professorEmail", "dateRequested","dateNeeded","explanation"];
+    const expectedHeaders = [
+      "id",
+      "Requester Email",
+      "Professor Email",
+      "Date Requested",
+      "Date Needed",
+      "Explanation",
+    ];
+    const expectedFields = [
+      "id",
+      "requesterEmail",
+      "professorEmail",
+      "dateRequested",
+      "dateNeeded",
+      "explanation",
+    ];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -79,8 +93,22 @@ describe("UserTable tests", () => {
       </QueryClientProvider>,
     );
 
-    const expectedHeaders = ["id", "Requester Email", "Professor Email", "Date Requested", "Date Needed", "Explanation"];
-    const expectedFields = ["id", "requesterEmail", "professorEmail", "dateRequested","dateNeeded","explanation"];
+    const expectedHeaders = [
+      "id",
+      "Requester Email",
+      "Professor Email",
+      "Date Requested",
+      "Date Needed",
+      "Explanation",
+    ];
+    const expectedFields = [
+      "id",
+      "requesterEmail",
+      "professorEmail",
+      "dateRequested",
+      "dateNeeded",
+      "explanation",
+    ];
     const testId = "RecommendationRequestTable";
 
     expectedHeaders.forEach((headerText) => {
@@ -141,7 +169,9 @@ describe("UserTable tests", () => {
     fireEvent.click(editButton);
 
     await waitFor(() =>
-      expect(mockedNavigate).toHaveBeenCalledWith("/RecommendationRequest/edit/1"),
+      expect(mockedNavigate).toHaveBeenCalledWith(
+        "/RecommendationRequest/edit/1",
+      ),
     );
   });
 
