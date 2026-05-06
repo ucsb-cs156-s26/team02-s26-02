@@ -1,6 +1,6 @@
 import React from "react";
 import RecommendationRequestTable from "main/components/RecommendationRequest/RecommendationRequestTable";
-import { ucsbDatesFixtures as recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
+import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import { http, HttpResponse } from "msw";
 
@@ -16,19 +16,19 @@ const Template = (args) => {
 export const Empty = Template.bind({});
 
 Empty.args = {
-  dates: [],
+  recReqs: [],
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-  dates: recommendationRequestFixtures.threeRecommendationRequests,
+  recReqs: recommendationRequestFixtures.threeRecommendationRequests,
   currentUser: currentUserFixtures.userOnly,
 };
 
 export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.args = {
-  dates: recommendationRequestFixtures.threeRecommendationRequests,
+  recReqs: recommendationRequestFixtures.threeRecommendationRequests,
   currentUser: currentUserFixtures.adminUser,
 };
 
