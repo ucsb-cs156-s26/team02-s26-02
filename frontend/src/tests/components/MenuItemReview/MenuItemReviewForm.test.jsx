@@ -1,4 +1,11 @@
-import { fireEvent, getByLabelText, getByTestId, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  getByLabelText,
+  getByTestId,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router";
 
 import MenuItemReviewForm from "main/components/MenuItemReview/MenuItemReviewForm";
@@ -103,24 +110,24 @@ describe("MenuItemReviewForm tests", () => {
   });
   test("stars boundary", async () => {
     render(
-        <QueryClientProvider client={queryClient}>
-            <Router>
-                <MenuItemReviewForm />
-            </Router>
-        </QueryClientProvider>,
+      <QueryClientProvider client={queryClient}>
+        <Router>
+          <MenuItemReviewForm />
+        </Router>
+      </QueryClientProvider>,
     );
 
     const starsInput = screen.getByTestId("MenuItemReviewForm-stars");
     const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
 
-    fireEvent.change(starsInput, { target: { value: '6' } });
+    fireEvent.change(starsInput, { target: { value: "6" } });
     fireEvent.click(submitButton);
 
     expect(await screen.findByText(/Maximum Rating is 5/)).toBeInTheDocument();
 
-    fireEvent.change(starsInput, { target: { value: '-1' } });
+    fireEvent.change(starsInput, { target: { value: "-1" } });
     fireEvent.click(submitButton);
 
     expect(await screen.findByText(/Minimum Rating is 0/)).toBeInTheDocument();
-});
+  });
 });
