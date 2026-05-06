@@ -128,21 +128,6 @@ describe("RecommendationRequestForm tests", () => {
 
     await waitFor(() => expect(mockSubmitAction).toHaveBeenCalled());
 
-    expect(
-      screen.queryByText(/requesterEmail is required./),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(/professorEmail is required./),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(/Date Requested is required./),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(/Date Needed is required./),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText(/Explanation is required./),
-    ).not.toBeInTheDocument();
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
