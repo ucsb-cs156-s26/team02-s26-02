@@ -1,7 +1,7 @@
 import React from "react";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
-import { recommendationRequestsFixtures } from "fixtures/recommendationRequestsFixtures";
+import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import { http, HttpResponse } from "msw";
 
 import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
@@ -27,7 +27,7 @@ Default.parameters = {
       });
     }),
     http.get("/api/RecommendationRequest", () => {
-      return HttpResponse.json(recommendationRequestsFixtures.threeDates[0], {
+      return HttpResponse.json(recommendationRequestFixtures.threeDates[0], {
         status: 200,
       });
     }),
