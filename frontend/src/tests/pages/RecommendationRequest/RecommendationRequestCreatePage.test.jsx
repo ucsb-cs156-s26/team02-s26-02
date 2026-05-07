@@ -104,9 +104,7 @@ describe("RecommendationRequestCreatePage tests", () => {
     const explanationField = screen.getByTestId(
       "RecommendationRequestForm-explanation",
     );
-    const doneField = screen.getByTestId(
-      "RecommendationRequestForm-done",
-    );
+    const doneField = screen.getByTestId("RecommendationRequestForm-done");
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
     fireEvent.change(requesterEmailField, {
