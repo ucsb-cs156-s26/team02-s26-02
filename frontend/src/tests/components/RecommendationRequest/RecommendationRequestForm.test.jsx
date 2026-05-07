@@ -25,6 +25,7 @@ describe("RecommendationRequestForm tests", () => {
     await screen.findByText(/Explanation/);
     await screen.findByText(/Date Requested/);
     await screen.findByText(/Date Needed/);
+    await screen.findByText(/Done/);
     await screen.findByText(/Create/);
     expect(screen.getByText(/Requester Email/)).toBeInTheDocument();
   });
@@ -101,11 +102,13 @@ describe("RecommendationRequestForm tests", () => {
     await screen.findByText(/Date Requested is required./);
     await screen.findByText(/Date Needed is required./);
     await screen.findByText(/Explanation is required./);
+    await screen.findByText(/Done is required./);
     expect(screen.getByText(/requesterEmail is required./)).toBeInTheDocument();
     expect(screen.getByText(/professorEmail is required./)).toBeInTheDocument();
     expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
     expect(screen.getByText(/Date Requested is required./)).toBeInTheDocument();
     expect(screen.getByText(/Date Needed is required./)).toBeInTheDocument();
+    expect(screen.getByText(/Done is required./)).toBeInTheDocument();
   });
 
   test("No Error messsages on good input", async () => {

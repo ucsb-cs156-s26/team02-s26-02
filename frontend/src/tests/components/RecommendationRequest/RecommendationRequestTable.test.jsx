@@ -40,6 +40,7 @@ describe("UserTable tests", () => {
       "Date Requested",
       "Date Needed",
       "Explanation",
+      "Done",
     ];
     const expectedFields = [
       "id",
@@ -48,6 +49,7 @@ describe("UserTable tests", () => {
       "dateRequested",
       "dateNeeded",
       "explanation",
+      "done",
     ];
     const testId = "RecommendationRequestTable";
 

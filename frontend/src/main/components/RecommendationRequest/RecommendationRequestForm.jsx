@@ -160,7 +160,6 @@ function RecommendationRequestFor({
               isInvalid={Boolean(errors.done)}
               {...register("done", {
                 required: "Done is required.",
-                defaultValues: false,
               })}
             />
             <Form.Control.Feedback type="invalid">
