@@ -1,47 +1,263 @@
-import { render, screen } from "@testing-library/react";
-import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
+import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
+import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
 
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { expect } from "vitest";
 
-describe("RecommendationRequestEditPage tests", () => {
-  const axiosMock = new AxiosMockAdapter(axios);
+import mockConsole from "tests/testutils/mockConsole";
+import { beforeEach, afterEach } from "vitest";
 
-  const setupUserOnly = () => {
-    axiosMock.reset();
-    axiosMock.resetHistory();
-    axiosMock
-      .onGet("/api/currentUser")
-      .reply(200, apiCurrentUserFixtures.userOnly);
-    axiosMock
-      .onGet("/api/systemInfo")
-      .reply(200, systemInfoFixtures.showingNeither);
+const mockToast = vi.fn();
+vi.mock("react-toastify", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    toast: vi.fn((x) => mockToast(x)),
   };
+});
 
-  const queryClient = new QueryClient();
-  test("Renders expected content", async () => {
-    // arrange
+const mockNavigate = vi.fn();
+vi.mock("react-router", async (importOriginal) => {
+  const originalModule = await importOriginal();
+  return {
+    ...originalModule,
+    useParams: vi.fn(() => ({
+      id: 17,
+    })),
+    Navigate: vi.fn((x) => {
+      mockNavigate(x);
+      return null;
+    }),
+  };
+});
 
-    setupUserOnly();
+let axiosMock;
+describe("RecommendationRequestEditPage tests", () => {
+  describe("when the backend doesn't return data", () => {
+    beforeEach(() => {
+      axiosMock = new AxiosMockAdapter(axios);
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+      axiosMock
+        .onGet("/api/RecommendationRequest", { params: { id: 17 } })
+        .timeout();
+    });
 
-    // act
-    render(
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <RecommendationRequestEditPage />
-        </MemoryRouter>
-      </QueryClientProvider>,
-    );
+    afterEach(() => {
+      mockToast.mockClear();
+      mockNavigate.mockClear();
+      axiosMock.restore();
+      axiosMock.resetHistory();
+    });
 
-    // assert
-    await screen.findByText("Edit page not yet implemented");
-    expect(
-      screen.getByText("Edit page not yet implemented"),
-    ).toBeInTheDocument();
+    const queryClient = new QueryClient();
+    test("renders header but table is not present", async () => {
+      const restoreConsole = mockConsole();
+
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <RecommendationRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByText(/Welcome/);
+      await screen.findByText("Edit RecommendationRequest");
+      expect(
+        screen.queryByTestId("RecommendationRequestForm-requesterEmail"),
+      ).not.toBeInTheDocument();
+      restoreConsole();
+    });
+  });
+
+  describe("tests where backend is working normally", () => {
+    beforeEach(() => {
+      axiosMock = new AxiosMockAdapter(axios);
+      axiosMock.reset();
+      axiosMock.resetHistory();
+      axiosMock
+        .onGet("/api/currentUser")
+        .reply(200, apiCurrentUserFixtures.userOnly);
+      axiosMock
+        .onGet("/api/systemInfo")
+        .reply(200, systemInfoFixtures.showingNeither);
+      axiosMock
+        .onGet("/api/RecommendationRequest", { params: { id: 17 } })
+        .reply(200, {
+          id: 17,
+          requesterEmail: "andrewbryan@ucsb.edu",
+          professorEmail: "andrewbryan@ucsb.edu",
+          dateRequested: "2022-02-02T00:00",
+          dateNeeded: "2022-02-02T00:00",
+          explanation: "This is an explanation",
+          done: false,
+        });
+      axiosMock.onPut("/api/RecommendationRequest").reply(200, {
+        id: 17,
+        requesterEmail: "andrewbryan@ucsb.edu",
+        professorEmail: "andrewbryan@ucsb.edu",
+        dateRequested: "2022-02-02T00:00",
+        dateNeeded: "2022-02-02T00:00",
+        explanation: "This is an explanation",
+        done: false,
+      });
+    });
+
+    afterEach(() => {
+      mockToast.mockClear();
+      mockNavigate.mockClear();
+      axiosMock.restore();
+      axiosMock.resetHistory();
+    });
+
+    const queryClient = new QueryClient();
+    test("renders without crashing", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <RecommendationRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+      await screen.findByText(/Welcome/);
+      await screen.findByTestId("RecommendationRequestForm-requesterEmail");
+      expect(
+        screen.getByTestId("RecommendationRequestForm-requesterEmail"),
+      ).toBeInTheDocument();
+    });
+
+    test("Is populated with the data provided", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <RecommendationRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("RecommendationRequestForm-requesterEmail");
+
+      const idField = screen.getByTestId("RecommendationRequestForm-id");
+      const requesterEmailField = screen.getByTestId(
+        "RecommendationRequestForm-requesterEmail",
+      );
+      const professorEmailField = screen.getByTestId(
+        "RecommendationRequestForm-professorEmail",
+      );
+      const dateRequestedField = screen.getByTestId(
+        "RecommendationRequestForm-dateRequested",
+      );
+      const dateNeededField = screen.getByTestId(
+        "RecommendationRequestForm-dateNeeded",
+      );
+      const explanationField = screen.getByTestId(
+        "RecommendationRequestForm-explanation",
+      );
+      const doneField = screen.getByTestId("RecommendationRequestForm-done");
+
+      const submitButton = screen.getByTestId(
+        "RecommendationRequestForm-submit",
+      );
+
+      expect(idField).toHaveValue("17");
+      expect(requesterEmailField).toHaveValue("andrewbryan@ucsb.edu");
+      expect(professorEmailField).toHaveValue("andrewbryan@ucsb.edu");
+      expect(dateRequestedField).toHaveValue("2022-02-02T00:00");
+      expect(dateNeededField).toHaveValue("2022-02-02T00:00");
+      expect(doneField).toHaveValue("false");
+      expect(explanationField).toHaveValue("This is an explanation");
+      expect(submitButton).toBeInTheDocument();
+    });
+
+    test("Changes when you click Update", async () => {
+      render(
+        <QueryClientProvider client={queryClient}>
+          <MemoryRouter>
+            <RecommendationRequestEditPage />
+          </MemoryRouter>
+        </QueryClientProvider>,
+      );
+
+      await screen.findByTestId("RecommendationRequestForm-requesterEmail");
+
+      const idField = screen.getByTestId("RecommendationRequestForm-id");
+      const requesterEmailField = screen.getByTestId(
+        "RecommendationRequestForm-requesterEmail",
+      );
+      const professorEmailField = screen.getByTestId(
+        "RecommendationRequestForm-professorEmail",
+      );
+      const dateRequestedField = screen.getByTestId(
+        "RecommendationRequestForm-dateRequested",
+      );
+      const dateNeededField = screen.getByTestId(
+        "RecommendationRequestForm-dateNeeded",
+      );
+      const explanationField = screen.getByTestId(
+        "RecommendationRequestForm-explanation",
+      );
+      const doneField = screen.getByTestId("RecommendationRequestForm-done");
+      const submitButton = screen.getByTestId(
+        "RecommendationRequestForm-submit",
+      );
+
+      expect(idField).toHaveValue("17");
+      expect(requesterEmailField).toHaveValue("andrewbryan@ucsb.edu");
+      expect(professorEmailField).toHaveValue("andrewbryan@ucsb.edu");
+      expect(dateRequestedField).toHaveValue("2022-02-02T00:00");
+      expect(dateNeededField).toHaveValue("2022-02-02T00:00");
+      expect(doneField).toHaveValue("false");
+      expect(explanationField).toHaveValue("This is an explanation");
+      expect(submitButton).toBeInTheDocument();
+
+      fireEvent.change(requesterEmailField, {
+        target: { value: "andrewbryan2@ucsb.edu" },
+      });
+      fireEvent.change(professorEmailField, {
+        target: { value: "andrewbryan2@ucsb.edu" },
+      });
+      fireEvent.change(explanationField, {
+        target: { value: "This is an explanation too" },
+      });
+      fireEvent.change(dateRequestedField, {
+        target: { value: "2023-03-03T00:00" },
+      });
+      fireEvent.change(dateNeededField, {
+        target: { value: "2023-03-03T00:00" },
+      });
+      fireEvent.change(doneField, {
+        target: { value: true },
+      });
+
+      fireEvent.click(submitButton);
+
+      await waitFor(() => expect(mockToast).toBeCalled());
+      expect(mockToast).toBeCalledWith(
+        "RecommendationRequest Updated - id: 17 explanation: This is an explanation",
+      );
+      expect(mockNavigate).toBeCalledWith({ to: "/RecommendationRequest" });
+
+      expect(axiosMock.history.put.length).toBe(1); // times called
+      expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
+      expect(axiosMock.history.put[0].data).toBe(
+        JSON.stringify({
+          requesterEmail: "andrewbryan2@ucsb.edu",
+          professorEmail: "andrewbryan2@ucsb.edu",
+          dateRequested: "2023-03-03T00:00",
+          dateNeeded: "2023-03-03T00:00",
+          explanation: "This is an explanation too",
+          done: "true",
+        }),
+      ); // posted object
+    });
   });
 });
