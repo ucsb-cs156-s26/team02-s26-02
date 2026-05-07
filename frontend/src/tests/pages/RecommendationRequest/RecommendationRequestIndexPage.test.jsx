@@ -104,7 +104,7 @@ describe("RecommendationRequestIndexPage tests", () => {
 
     // assert that the Create button is not present when user isn't an admin
     expect(
-      screen.queryByText(/Create RecommendationRequest/),
+      screen.queryByText(/Create Recommendation Request/),
     ).not.toBeInTheDocument();
   });
 
