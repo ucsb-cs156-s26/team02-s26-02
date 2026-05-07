@@ -55,6 +55,10 @@ export default function RecommendationRequestTable({ recReqs, currentUser }) {
       header: "Explanation",
       accessorKey: "explanation",
     },
+    {
+      header: "Done",
+      accessorKey: "done",
+    },
   ];
 
   if (hasRole(currentUser, "ROLE_ADMIN")) {
