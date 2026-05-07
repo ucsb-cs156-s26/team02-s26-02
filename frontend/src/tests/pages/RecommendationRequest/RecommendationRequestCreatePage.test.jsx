@@ -72,7 +72,7 @@ describe("RecommendationRequestCreatePage tests", () => {
     };
 
     axiosMock
-      .onPost("/api/RecommendationRequests/post")
+      .onPost("/api/RecommendationRequest/post")
       .reply(202, recommendationRequest);
 
     render(
@@ -104,6 +104,9 @@ describe("RecommendationRequestCreatePage tests", () => {
     const explanationField = screen.getByTestId(
       "RecommendationRequestForm-explanation",
     );
+    const doneField = screen.getByTestId(
+      "RecommendationRequestForm-done",
+    );
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
     fireEvent.change(requesterEmailField, {
@@ -121,6 +124,9 @@ describe("RecommendationRequestCreatePage tests", () => {
     fireEvent.change(dateNeededField, {
       target: { value: "2022-02-02T00:00" },
     });
+    fireEvent.change(doneField, {
+      target: { value: false },
+    });
 
     expect(submitButton).toBeInTheDocument();
 
@@ -134,11 +140,12 @@ describe("RecommendationRequestCreatePage tests", () => {
       explanation: "This is an explanation",
       dateRequested: "2022-02-02T00:00",
       dateNeeded: "2022-02-02T00:00",
+      done: "false",
     });
 
     expect(mockToast).toBeCalledWith(
       "New recommendationRequest Created - id: 17 explanation: This is an explanation",
     );
-    expect(mockNavigate).toBeCalledWith({ to: "/RecommendationRequests" });
+    expect(mockNavigate).toBeCalledWith({ to: "/RecommendationRequest" });
   });
 });

@@ -149,6 +149,26 @@ function RecommendationRequestFor({
           </Form.Group>
         </Col>
       </Row>
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label htmlFor="done">Done</Form.Label>
+            <Form.Control
+              data-testid="RecommendationRequestForm-done"
+              id="done"
+              type="boolean"
+              isInvalid={Boolean(errors.done)}
+              {...register("done", {
+                required: "Done is required.",
+                defaultValues: false,
+              })}
+            />
+            <Form.Control.Feedback type="invalid">
+              {errors.done?.message}
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Col>
+      </Row>
 
       <Row>
         <Col>

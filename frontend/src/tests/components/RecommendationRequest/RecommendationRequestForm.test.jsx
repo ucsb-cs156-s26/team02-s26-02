@@ -137,6 +137,9 @@ describe("RecommendationRequestForm tests", () => {
     const explanationField = screen.getByTestId(
       "RecommendationRequestForm-explanation",
     );
+    const doneField = screen.getByTestId(
+      "RecommendationRequestForm-done",
+    );
     const submitButton = screen.getByTestId("RecommendationRequestForm-submit");
 
     fireEvent.change(explanationField, {
@@ -153,6 +156,9 @@ describe("RecommendationRequestForm tests", () => {
     });
     fireEvent.change(dateNeededField, {
       target: { value: "2023-02-03T12:00" },
+    });
+    fireEvent.change(doneField, {
+      target: { value: false },
     });
     fireEvent.click(submitButton);
 
