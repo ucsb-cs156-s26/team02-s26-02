@@ -65,9 +65,10 @@ public class MenuItemReviewIT {
 
     // act
     MvcResult response =
-        mockMvc.perform(get("/api/menuitemreviews?id=1")).andExpect(status().isOk()).andReturn();
+        mockMvc.perform(get("/api/menuitemreview?id=1")).andExpect(status().isOk()).andReturn();
 
     // assert
+    menuitemreview.setId(1L);
     String expectedJson = mapper.writeValueAsString(menuitemreview);
     String responseString = response.getResponse().getContentAsString();
     assertEquals(expectedJson, responseString);
@@ -92,7 +93,7 @@ public class MenuItemReviewIT {
     MvcResult response =
         mockMvc
             .perform(
-                post("/api/menuitemreviews/post?itemId=17&reviewerEmail=kaijunli@ucsb.edu&stars=5&dateReviewed=2022-01-02T12:00:00&comments=skibidi")
+                post("/api/menuitemreview/post?itemId=17&reviewerEmail=kaijunli@ucsb.edu&stars=5&dateReviewed=2022-01-02T12:00:00&comments=skibidi")
                     .with(csrf()))
             .andExpect(status().isOk())
             .andReturn();
