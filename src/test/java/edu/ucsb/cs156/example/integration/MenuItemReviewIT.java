@@ -39,7 +39,7 @@ public class MenuItemReviewIT {
 
   @Autowired public GrantedAuthoritiesService grantedAuthoritiesService;
 
-  @Autowired MenuItemReviewRepository MenuItemReviewRepository;
+  @Autowired MenuItemReviewRepository menuItemReviewRepository;
 
   @Autowired public MockMvc mockMvc;
 
@@ -61,7 +61,7 @@ public class MenuItemReviewIT {
             .comments("skibidi")
             .build();
 
-    MenuItemReviewRepository.save(menuitemreview);
+    menuItemReviewRepository.save(menuitemreview);
 
     // act
     MvcResult response =
